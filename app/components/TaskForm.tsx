@@ -22,9 +22,9 @@ const TaskForm: React.FC<TaskFormProps> = ({onSubmit}) => {
         },
     });
 
-    return <form onSubmit={formik.handleSubmit} className="flex flex-col">
+    return <form onSubmit={formik.handleSubmit} className="flex flex-col flex-1 max-w-md">
         <input
-            className="drop-shadow p-2 w-full rounded outline-[#068FFF] border border-[#068FFF]"
+            className="drop-shadow p-2 rounded outline-[#068FFF] border border-[#068FFF] w-full"
             type="text"
             placeholder="Title"
             name="title"
