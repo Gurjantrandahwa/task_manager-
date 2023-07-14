@@ -91,7 +91,7 @@ const TaskList: React.FC<TaskListProps> = ({
             className = "text-sm";
         }
         if (taskStatus === "In Progress") {
-            className += " bg-yellow-300";
+            className += " bg-yellow-400";
         } else if (taskStatus === "Complete") {
             className += " bg-green-300";
         } else {
