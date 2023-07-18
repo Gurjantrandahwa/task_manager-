@@ -12,3 +12,13 @@
 button{
     cursor: pointer;
 }
+
+.active{
+    border-bottom: 2px solid dodgerblue;
+    color: dodgerblue;
+    transition: 0.3s;
+}
+.main-task input[type="checkbox"]:checked + label{
+    text-decoration: line-through;
+    color: red;
+}

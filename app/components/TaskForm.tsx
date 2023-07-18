@@ -48,7 +48,6 @@ const TaskForm: React.FC<TaskFormProps> = ({onSubmit}) => {
         <button
             className="bg-[#068FFF] text-white px-8 py-2 rounded w-full mt-6"
             type="submit"
-            disabled={!formik.isValid || formik.isSubmitting}
         >
             Add Task
         </button>
