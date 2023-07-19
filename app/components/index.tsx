@@ -60,7 +60,7 @@ const Home: React.FC = () => {
 
     return <>
         <div className="p-4 mx-auto">
-            <h1 className="text-center font-medium text-2xl mb-12">Task Manager</h1>
+            <h1 className="text-center font-medium text-2xl mb-12">Task Manager Assignment</h1>
             <div className="flex justify-evenly flex-wrap gap-6">
                 <TaskForm onSubmit={handleAddTask}/>
                 <TaskList
