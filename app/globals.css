@@ -9,16 +9,17 @@
     background-color: #EEEEEE;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-.active{
+.active {
     border-bottom: 2px solid dodgerblue;
     color: dodgerblue;
     transition: 0.3s;
 }
-.main-task input[type="checkbox"]:checked + label{
+
+.main-task input[type="checkbox"]:checked + label {
     text-decoration: line-through;
-    color: red;
+    color: rgba(255, 0, 0, 0.48);
 }
