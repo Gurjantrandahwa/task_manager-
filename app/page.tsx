@@ -1,26 +1,24 @@
+"use client"
+
 import React from 'react';
-import AddTodo from "./newComponents/AddTodo";
-import TodoList from "./newComponents/TodoList";
-import FilterNavbar from "./newComponents/FilterNavbar";
-import Home from "./components";
+import TaskManager from "./components";
+import ToDo from "./newComponents";
 
 
 const Page = () => {
-    return<>
-        <div>
-            <Home/>
-        </div>
-        <main className={"container mt-5 px-5 flex flex-col justify-center mx-auto max-w-2xl overflow-y-scroll"}>
 
-            <h2 className={"text-center text-blue-600 font-semibold text-2xl mb-6"}>
-                Task Manager
-            </h2>
-            <FilterNavbar/>
-            <AddTodo/>
-            <TodoList/>
+    return <div className={"container xl mx-auto px-4"}>
 
-        </main>
-    </>
+        {/* this task manager assignment given/*/}
+
+        <TaskManager/>
+
+        {/* this to do list new version of the task manager*/}
+
+        <ToDo/>
+
+
+    </div>
 }
 
 export default Page;

@@ -9,9 +9,7 @@ const FilterNavbar = () => {
     const searchParams = useSearchParams();
     const todosFilter = searchParams.get('todos')
 
-
-    console.log("nav " + todosFilter)
-    return <nav className={"flex justify-between m-6"}>
+    return <nav className={"flex justify-between mb-4"}>
         <Link href={"/"} className={todosFilter === null ? "active" : ""}>
             All
         </Link>

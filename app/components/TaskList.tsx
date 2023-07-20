@@ -86,7 +86,7 @@ const TaskList: React.FC<TaskListProps> = ({
     const getClassName = (taskStatus: string, element: string) => {
         let className = "";
         if (element === "card") {
-            className = "flex items-center drop-shadow mb-4 p-3 max-w-md transition-colors gap-4";
+            className = "flex items-center drop-shadow mb-4 p-3 max-w-md transition-colors gap-4 rounded-md";
         } else if (element === "text") {
             className = "text-sm";
         }
@@ -117,22 +117,23 @@ const TaskList: React.FC<TaskListProps> = ({
                             onChange={(e) => setEditedDescription(e.target.value)}
                         />
                         <select
-                            className="mt-4 mb-6 outline-blue-500 p-2 bg-[#068FFF] rounded text-white"
+                            className={"bg-blue-500 text-white"}
                             value={taskStatus}
                             onChange={(e) =>
                                 setTaskStatus(e.target.value as "In Progress" | "To Do" | "Complete")
                             }
                         >
-                            <option value="In Progress" className=" text-black text-sm">In Progress</option>
-                            <option value="To Do" className="  text-black text-sm">To Do</option>
-                            <option value="Complete" className=" text-black text-sm">Complete</option>
+                            <option value="In Progress" >In Progress</option>
+                            <option value="To Do">To Do</option>
+                            <option value="Complete">Complete</option>
+
                         </select>
-                        <div className=" flex justify-between">
+                        <div>
                             <button onClick={() => handleSaveEditing(task.id)}
-                                    className=" bg-[#068FFF] px-4 text-white rounded py-2">Save
+                                  >Save
                             </button>
                             <button onClick={handleCancelEditing}
-                                    className=" border border-[#068FFF] px-4 text-[#068FFF] py-2 rounded">Cancel
+                                  >Cancel
                             </button>
                         </div>
 
@@ -153,7 +154,7 @@ const TaskList: React.FC<TaskListProps> = ({
                             </p>
                         </div>
 
-                        <div className="flex items-center gap-2 justify-center bg-[#068FFF] px-2 rounded">
+                        <div className={"bg-blue-500 text-white"}>
 
                                 <button
                                     onClick={() =>
@@ -165,15 +166,15 @@ const TaskList: React.FC<TaskListProps> = ({
                                         )
                                     }
                                 >
-                                    <AiFillEdit className={"text-white text-xl bg-[#068FFF]"} />
+                                    <AiFillEdit  className={"bg-blue-500 text-white"}/>
                                 </button>
-                                <button onClick={() => handleDeleteTask(task.id)} className={""}>
-                                    <AiFillDelete className="text-xl text-red-500 bg-[#068FFF]" />
+                                <button onClick={() => handleDeleteTask(task.id)}>
+                                    <AiFillDelete className="bg-blue-500 text-white" />
                                 </button>
 
                             {/* Status change options*/}
                             <select
-                                className="outline-none p-1 bg-[#068FFF] text-white"
+                                className={"outline-none border-none bg-blue-500 text-white"}
                                 value={task.status}
                                 onChange={(e) =>
                                     handleUpdateStatus(
@@ -182,13 +183,13 @@ const TaskList: React.FC<TaskListProps> = ({
                                     )
                                 }
                             >
-                                <option value="In Progress" className=" text-black text-sm">
+                                <option value="In Progress" className={""} >
                                     In Progress
                                 </option>
-                                <option value="To Do" className="  text-black text-sm">
+                                <option value="To Do">
                                     To Do
                                 </option>
-                                <option value="Complete" className=" text-black text-sm">
+                                <option value="Complete" >
                                     Complete
                                 </option>
                             </select>

@@ -1,5 +1,5 @@
 "use client"
-import React, {FormEvent, useState} from 'react';
+import React from 'react';
 import {useTodos} from "../store/todos";
 import {useFormik} from "formik";
 import * as Yup from "yup";
@@ -22,13 +22,12 @@ const AddTodo = () => {
             formik.resetForm();
         },
     });
-    return <form className={"flex items-start gap-6 mb-2"}
+    return <form className={"flex justify-between gap-4"}
                  onSubmit={formik.handleSubmit}
     >
         <div className={"flex-1"}>
             <input
-                className={"w-full border border-[#252525] border-1 outline-1 p-2 " +
-                "rounded mb-4 text-[14px] text-slate-700"}
+                className={"w-full border border-blue-300 outline-blue-500 py-2 px-4 rounded-md drop-shadow"}
                 type={"text"}
                 placeholder={"Write Your Task"}
                 name={"todo"}
@@ -42,7 +41,7 @@ const AddTodo = () => {
         </div>
 
         <button
-            className={"bg-red-400 text-white rounded p-2 outline-none px-4 text-sm"}
+            className={"flex-2 bg-blue-400 py-2 px-4 rounded-md drop-shadow"}
             type={"submit"}>
             Add Task
         </button>

@@ -1,54 +1,91 @@
 "use client"
 
-import React from 'react';
+import React, {useState} from 'react';
 import {useTodos} from "../store/todos";
-import {AiFillDelete} from "react-icons/ai";
+import {AiFillDelete, AiFillEdit} from "react-icons/ai";
 import {useSearchParams} from "next/navigation";
+import {FaSave} from "react-icons/fa";
 
 const TodoList = () => {
-    const {todos, handleDeleteTodo, todoAsCompleted} = useTodos();
+    const {todos, handleDeleteTodo, todoAsCompleted, handleEditTodo} = useTodos();
     const searchParams = useSearchParams();
-    const todosFilter = searchParams.get('todos')
+    const todosFilter = searchParams.get('todos');
 
+    const [editedTodoId, setEditedTodoId] = useState(null);
+    const [updatedTask, setUpdatedTask] = useState('');
+
+    const handleEditInputChange = (event) => {
+        setUpdatedTask(event.target.value);
+    };
 
     let filterTodos = todos;
 
     if (todosFilter === "progress") {
-        filterTodos = filterTodos.filter((todo) => !todo.completed)
-
+        filterTodos = filterTodos.filter((todo) => !todo.completed);
     } else if (todosFilter === "completed") {
-        filterTodos = filterTodos.filter((todo) => todo.completed)
+        filterTodos = filterTodos.filter((todo) => todo.completed);
     }
 
-    return <ul className={"divide-y divide-blue-500"}>
+    return <ul>
+
         {filterTodos.map((todo) => {
-            return <li key={todo.id} className={"main-task flex items-start justify-between py-4"}>
-                <div className={"flex gap-5 items-start"}>
-                    <input className={"cursor-pointer h-4 w-4 mt-1"}
-                           type="checkbox"
-                           name={""}
-                           id={`todo-${todo.id}`}
-                           checked={todo.completed}
-                           onChange={() => todoAsCompleted(todo.id)}
-                           autoComplete={false}
+            const isEdited = editedTodoId === todo.id;
+
+            return <li key={todo.id} className={"main-task flex justify-between mb-2"}>
+                <div className={"flex gap-2"}>
+                    <input
+                        type="checkbox"
+                        name={""}
+                        id={`todo-${todo.id}`}
+                        checked={todo.completed}
+                        onChange={() => todoAsCompleted(todo.id)}
                     />
+                    {isEdited ? (
+                        <input
+                            type="text"
+                            value={updatedTask}
+                            onChange={handleEditInputChange}
 
-                    <label htmlFor={`todo-${todo.id}`}
-                           className={"font-bold text-base text-blue-500"}>
-                        {todo.task}
-                    </label>
+                        />
+                    ) : (
+                        <label htmlFor={`todo-${todo.id}`}>
+                            {todo.task}
+                        </label>
+                    )}
                 </div>
+                <div className={"flex gap-2"}>
+                    {isEdited ? (
+                        <button
+                            type={"button"}
 
-
-                {
-                    todo.completed && (
-
-                        <button className={"text-red-500"}
-                                type={"button"} onClick={() => handleDeleteTodo(todo.id)}>
-                            <AiFillDelete size={20}/>
+                            onClick={() => {
+                                handleEditTodo(todo.id, updatedTask);
+                                setEditedTodoId(null);
+                            }}
+                        >
+                            <FaSave/>
                         </button>
-                    )
-                }
+                    ) : (
+                        <button
+                            className={"text-blue-500"}
+                            onClick={() => {
+                                setEditedTodoId(todo.id);
+                                setUpdatedTask(todo.task);
+                            }}
+                        >
+                            <AiFillEdit size={20} />
+                        </button>
+                    )}
+                    {todo.completed && (
+                        <button
+
+                            type={"button"}
+                            onClick={() => handleDeleteTodo(todo.id)}
+                        >
+                            <AiFillDelete size={20} className={"text-red-500"}/>
+                        </button>
+                    )}
+                </div>
             </li>
         })}
     </ul>

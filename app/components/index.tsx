@@ -4,8 +4,6 @@ import React, {useState, useEffect} from "react";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
 
-
-
 interface Task {
     id: string;
     title: string;
@@ -13,7 +11,8 @@ interface Task {
     status: "In Progress" | "To Do" | "Complete";
 }
 
-const Home: React.FC = () => {
+const TaskManager: React.FC = () => {
+
     const [tasks, setTasks] = useState<Task[]>([]);
 
     useEffect(() => {
@@ -58,20 +57,24 @@ const Home: React.FC = () => {
         localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     };
 
-    return <>
-        <div className="p-4 mx-auto">
-            <h1 className="text-center font-medium text-2xl mb-12">Task Manager Assignment</h1>
-            <div className="flex justify-evenly flex-wrap gap-6">
-                <TaskForm onSubmit={handleAddTask}/>
-                <TaskList
-                    tasks={tasks}
-                    onDeleteTask={handleDeleteTask}
-                    onEditTask={handleEditTask}
-                    onUpdateStatus={handleUpdateStatus}
-                />
-            </div>
+    return <div className={"my-6"}>
+
+        <h1 className={"text-2xl text-center font-semibold mb-3 text-blue-600"}>
+            Task Manager Assignment
+        </h1>
+        <div className={"flex gap-8 mx-auto items-start justify-center my-10"}>
+            <TaskForm onSubmit={handleAddTask}/>
+            <TaskList
+                tasks={tasks}
+                onDeleteTask={handleDeleteTask}
+                onEditTask={handleEditTask}
+                onUpdateStatus={handleUpdateStatus}
+            />
+
         </div>
-    </>
+
+
+    </div>
 }
 
-export default Home;
+export default TaskManager;
