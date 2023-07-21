@@ -31,9 +31,10 @@ const TodoList = () => {
         {filterTodos.map((todo) => {
             const isEdited = editedTodoId === todo.id;
 
-            return <li key={todo.id} className={"main-task flex justify-between mb-2"}>
-                <div className={"flex gap-2"}>
+            return <li key={todo.id} className={"main-task flex justify-between mb-4 mt-4"}>
+                <div className={"flex flex-1 gap-2 items-center"}>
                     <input
+                        className={"w-[18px] h-[18px]"}
                         type="checkbox"
                         name={""}
                         id={`todo-${todo.id}`}
@@ -41,14 +42,19 @@ const TodoList = () => {
                         onChange={() => todoAsCompleted(todo.id)}
                     />
                     {isEdited ? (
+
                         <input
+                            className={"border border-blue-500 outline-blue-500 rounded py-1 px-2 w-full mx-4"}
                             type="text"
                             value={updatedTask}
                             onChange={handleEditInputChange}
 
                         />
+
                     ) : (
-                        <label htmlFor={`todo-${todo.id}`}>
+                        <label htmlFor={`todo-${todo.id}`}
+                        className={"font-semibold text-lg"}
+                        >
                             {todo.task}
                         </label>
                     )}
@@ -57,13 +63,13 @@ const TodoList = () => {
                     {isEdited ? (
                         <button
                             type={"button"}
-
+                            className={"text-green-600"}
                             onClick={() => {
                                 handleEditTodo(todo.id, updatedTask);
                                 setEditedTodoId(null);
                             }}
                         >
-                            <FaSave/>
+                            <FaSave  size={20}/>
                         </button>
                     ) : (
                         <button
